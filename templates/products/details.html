@@ -1,0 +1,120 @@
+{% extends "../base.html" %}
+{% block title %}{{product.title}}{% endblock %}
+{% block content %}
+
+
+<section class="bg-white dark:bg-gray-900">
+    <div class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
+        <div class=" lg:mt-0 lg:col-span-3 lg:flex">
+            <img src="{{product.image.url}}" alt="{{product.title}}">
+        </div>                
+        <div class=" lg:col-span-8">
+            <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+                <h2 class="mb-2 text-3xl font-semibold leading-none text-blue-800 dark:text-white">{{product.title}}</h2>
+                {% comment %} <p class="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-white">$2999</p> {% endcomment %}
+                <dl class="mt-5">
+                    <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Details</dt>
+                    <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">Standard glass ,3.8GHz 8-core 10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory, Radeon Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2, Magic Keyboard - US.</dd>
+                </dl>
+                <div class="flex items-center">
+                    <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white mr-2">Rating</dt>
+                    
+                    <svg class="w-4 h-4 text-yellow-300" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                        <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                    </svg>
+                    <p class="ml-2 text-sm font-bold text-gray-900 dark:text-white mr-1"> {{product.get_average_rating}} </p>
+                    <a class="text-sm font-medium text-gray-900 dark:text-white"> ({{product.count_rating}})</a>
+                    {% comment %} <div class="flex items-center">? {% endcomment %}
+                    {% comment %} </div> {% endcomment %}
+
+
+                </div>
+                <br>
+                <dl class="flex items-center space-x-6">
+                    <div>
+                        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Type</dt>
+                        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">{{product.product_type|title}}</dd>
+                    </div>
+                    <div>
+                        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Category</dt>
+                        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">{{product.category}}</dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+    </div>
+</section>
+<hr>
+<section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-12">
+        
+        <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-blue-900 md:text-3xl dark:text-white">Rating and Reviews ({{product.count_rating}})</h1>
+
+        
+
+
+        <div class="bg-white dark:bg-gray-900 py-2 lg:py-6  antialiased">
+            <div class="mx-auto px-4">
+                {% if user.is_authenticated %}
+
+              <form method="POST" action='{% url "products:details" slug=product.slug %}'  class=" max-w-3xl mb-6">
+                    {% csrf_token %}
+                    <div >
+                        <label for="comment" class="sr-only">Your comment</label>
+                        {{form.comment}}
+                    </div>
+                    
+                    
+                    <label for="comment">Rating</label>
+                    {{form.rating}}
+                    
+                    
+
+                  <button type="submit"
+                      class="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                      Post comment
+                  </button>
+              </form>
+
+              {% else %}
+              <div class="p-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
+                To Add Comment Please, <a href='{% url "accounts:login" %}' class="font-bold underline">Login</a>
+              </div>
+              {% endif %}
+
+
+            {% for comment in comments %}
+                <article class="p-6 mb-3 text-base bg-white border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 ">
+                    <footer class="flex justify-between items-center mb-2">
+                        <div class="flex items-center">
+                            <p class="inline-flex items-center mr-3 text-md text-blue-700 dark:text-white font-semibold">{{comment.user.username}}</p>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mr-1"><time pubdate datetime="2022-03-12"
+                                    title="March 12th, 2022">{{comment.updated|date:"M d, Y"}} </time></p>
+                            
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mr-1"><time pubdate datetime="2022-03-12"
+                                    title="March 12th, 2022 mr-1">| {{comment.updated|timesince}}</time></p>
+                            
+                            <p class="text-sm text-gray-600 dark:text-gray-400">| 
+                                <div class="ml-1 flex items-center">
+                                <svg class="w-4 h-4 text-yellow-300 mr-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
+                                    <path d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"/>
+                                </svg>
+                                {{comment.rating}}</p>
+                            </div>
+                        </div>
+                        
+                    </footer>
+                    <p class="text-gray-500 dark:text-gray-400">{{comment.comment}}</p>
+                    
+                </article>
+            {% endfor %}
+
+              
+            </div>
+          </div>
+        
+    </div>
+    
+</section>
+
+{% endblock %}
