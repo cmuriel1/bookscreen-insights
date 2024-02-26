@@ -33,9 +33,14 @@ Open editor where manage.py exist, make virtual env by terminal.
 ```python manage.py runserver```
 
 
+
 ### Screenshots
 ## Login and Signup Page
+![eae76cdb-ef3e-4c2b-991c-b1f6f2b2e586](https://github.com/cmuriel1/bookscreen-insights/assets/145692735/84b5472f-03d9-4504-b8e4-a13887097184)
+![eed1d041-9239-407d-9e3b-44e63d14889f](https://github.com/cmuriel1/bookscreen-insights/assets/145692735/f77544a8-aa3f-46ae-9d74-a33d5b5cd432)
 
 ## Homepage
+![af4ff8d2-8359-4537-a9a7-8335fd39e20d](https://github.com/cmuriel1/bookscreen-insights/assets/145692735/e805047f-ad35-46a0-a158-53023e279164)
 
 ## Reviews
+
