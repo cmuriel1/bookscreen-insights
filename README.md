@@ -46,8 +46,10 @@ Open editor where manage.py exist, make virtual env by terminal.
 
 a. The title of your site and a link to the URL where it is deployed
 BookScreen-insights
+
 b. Describe what your website does
 The website allows users to rate movies and books
+
 c. List the features you implemented and explain why you chose those
 features to implement
 Users are able to rate movies and books in two way by leaving a rating and review. There is almost admin feature to add different titles
@@ -56,9 +58,12 @@ d. Where your tests are and how to run them
 
 e. Walk someone through the standard user flow for the website
 You will start by going to the homepage. There you will see a place to sign up and create a login. After login is created you have access to see all the different movies and books to rate
+
 f. Keep the API in there, and if you have anything to say about the API then
 add some notes. If you have created your own API, please document the
 process.
+
 g. Identify the technology stack used to create your website
 Python and Django
+
 h. Include anything else that you feel is important to share
