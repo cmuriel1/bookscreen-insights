@@ -2,7 +2,7 @@
 Bookscreen Insights is a platform where users can see all new movies and
 put there is feedback in form of star and written feedback
 
-## Contribute
+
 
 
 # Getting Started with Django project
