@@ -3,7 +3,7 @@ Bookscreen Insights is a platform where users can see all new movies and
 put there is feedback in form of star and written feedback
 
 ## Contribute
-You can feel free to contribute in ***Bookscreen Insights***, Make pull request i will definitely merge it.
+
 
 # Getting Started with Django project
 This site was made with [Django Project](https://docs.djangoproject.com/en/5.0/)
